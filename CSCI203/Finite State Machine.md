@@ -1,0 +1,10 @@
+- Also known as finite-state automation
+- FSM Examples
+	- Vending machine
+	- alarm clock
+- A finite state machine M is defined by a five tuple where
+	- Q is a finite set of states{q0, q1, q2, ..., qn}
+	- F is a subset of final state of Q
+	- q0 is a single start state in Q
+	- S is an input/output alphabet
+	-  : Q x S -> Q maps the current input and current state into the next state

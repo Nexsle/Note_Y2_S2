@@ -1,0 +1,12 @@
+- Consider an algebraic expression
+	- $(x+y)*(y-(z*w))$
+- We can represent this expression as a binary tree
+	- ![[Pasted image 20250819153346.png]]
+- We can traverse an expression tree
+- Pre-order:
+	- $*+yx-y*zw$
+- In-order
+	- $x+y*y-z$
+- Post-order
+	- $xy+yzw*-*$
+- 
