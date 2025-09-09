@@ -62,5 +62,79 @@
 ---
 ![[Pasted image 20250819145401.png]]
 
-# Left rotation(LL)
+
+# 2-3-4 Tree
 ---
+![[Pasted image 20250826135555.png]]
+- A 2-3-4 balanced tree have three types of nodes
+	- 2-nodes has one key and two child nodes
+	- 3-node has 2 keys and three child
+	- 4-node has three key and 4 child node
+
+- Search 
+	- compare the item to be searched with the keys of the node
+	- Move to the appropriate direction
+- Insertion
+	- A node cannot hold more than 3 keys, if full before insertion, we split the node so that the new node can be inserted
+- Deletion
+	- Depending upon the location of the node containing the target to be deleted
+
+- The tree has the following properties
+	- Every internal node has between two and four children
+	- the keys within each node are ordered from the smallest to largest
+	- Internal node have one less key than they have children
+	- All the leaves of the tree are at the same depth
+
+
+
+# Insertion into a 2-4 Tree
+---
+- Find leaf where the item is to be inserted
+- Insert the item
+- Update node
+	- Into 2-node -> 3-node
+	- into 3-node -> 4 node
+	- into 4-node -> 5 node
+		- If an immediately adjacent sibling is not full, send a key from the parent down to this sibling
+		- if all such siblings are full, split the node into two by passing the median key up to the parents
+
+
+# 2-4 Tree Efficiency
+---
+- Height: O($\log n$)
+- Searching:
+	- Each node checked takes O(1)
+	- Search takes O($\log n$)
+- Insertion
+	- Split takes O(1)
+	- At most $\log n$ splits
+	- Insertion takes O($\log n$)
+- Deletion
+	- Merge takes O(1)
+	- at most $\log n$
+	- deletion takes O$(\log n)$
+
+
+# Quadtrees
+---
+- most often used to partition a 2D space
+- Each internal node has exactly four children![[Pasted image 20250826145606.png]]
+
+
+# Octree
+---
+- A tree data  structure where each internal node has exactly 8 children
+- it is primarily used for spatial partitioning in three dimensional space, recursively subdividing a bounding cube into 8 congruent sub-cubes
+
+# K-D trees
+---
+- Recursively split P into two sets of the same size, alternatingly along a vertical or horizontal line
+- through the median in x or y coordinates
+[K-Dimensional Tree Showcase](https://medium.com/@katyayanivemula90/what-is-a-k-dimensional-tree-8265cc737d77)
+
+- Search complexity
+	- A kd tree for a set of n points in the plane can be constructed in $O(n\log n)$ time and uses $O(n)$ space
+	- A rectangular range query can be answered in $O(\sqrt{ n }+k)$ where k = # reported points
+
+
+
