@@ -124,3 +124,10 @@ cat2=cat1;
 friend return_type function_name (Class & objClass);
 ```
 
+
+# Operator overloading
+---
+Syntax
+```c++
+Class operator+() {}
+```
