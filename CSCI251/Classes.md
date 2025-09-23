@@ -124,3 +124,18 @@ cat2=cat1;
 friend return_type function_name (Class & objClass);
 ```
 
+# Const Function
+```c++
+class A
+{
+	int x;
+	int B() const
+	{
+		return x++;
+	}
+}
+
+A obj;
+obj.B(); // error
+```
+cannot modify the instance that calls it
