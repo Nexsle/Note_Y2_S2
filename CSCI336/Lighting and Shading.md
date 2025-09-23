@@ -125,3 +125,8 @@ void main()
 	vNormal = uNormalMatrix * aNormal;
 }
 ```
+
+
+## Phong Shading
+---
+Instead of interpolating vertex intensities, interpolate vertex normal
