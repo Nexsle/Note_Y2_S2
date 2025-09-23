@@ -124,7 +124,6 @@ cat2=cat1;
 friend return_type function_name (Class & objClass);
 ```
 
-<<<<<<< HEAD
 # Const Function
 ```c++
 class A
