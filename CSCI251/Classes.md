@@ -139,7 +139,6 @@ A obj;
 obj.B(); // error
 ```
 cannot modify the instance that calls it
-=======
 
 # Operator overloading
 ---
@@ -147,4 +146,17 @@ Syntax
 ```c++
 Class operator+() {}
 ```
+
+# UML
+---
+![[Pasted image 20250923110736.png]]
+
+![[Pasted image 20250923111329.png]]
+
+### Relationship
+- Inheritance.
+- Dependency.
+- Association.
+- Aggregation.
+- Composition.
 
