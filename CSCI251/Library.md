@@ -1,3 +1,4 @@
+
 A library is a precompiled binary that contains the implementation of that functionality pre-compiled into machine language
 
 # Why pre-compiled
@@ -47,3 +48,9 @@ export LD_LIBRARY_PATH
 
 g++ -I. -L. main.cpp -lcode
 ```
+# Init list
+---
+Some cases where you have to use init list: init of non static member, reference members, 
+![[Pasted image 20250923121143.png|600]]
+
+
