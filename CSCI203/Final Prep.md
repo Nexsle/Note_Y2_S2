@@ -228,20 +228,20 @@ Show the tree after: a) Inserting 10, 20, 5 b) Inserting 6 (this will cause a sp
 # Part 3: Sorting Algorithm
 ### Quick Complexity Reference
 
-|Algorithm|Best Case|Average Case|Worst Case|Space|Stable?|
-|---|---|---|---|---|---|
-|**Merge Sort**|O(n log n)|O(n log n)|O(n log n)|O(n)|Yes|
-|**Heap Sort**|O(n log n)|O(n log n)|O(n log n)|O(1)|No|
-|**Quick Sort**|O(n log n)|O(n log n)|O(n²)|O(log n)|No|
-|**Counting Sort**|O(n+k)|O(n+k)|O(n+k)|O(k)|Yes|
-|**Radix Sort**|O(d(n+k))|O(d(n+k))|O(d(n+k))|O(n+k)|Yes|
+| Algorithm         | Best Case  | Average Case | Worst Case | Space    | Stable? |
+| ----------------- | ---------- | ------------ | ---------- | -------- | ------- |
+| **Merge Sort**    | O(n log n) | O(n log n)   | O(n log n) | O(n)     | Yes     |
+| **Heap Sort**     | O(n log n) | O(n log n)   | O(n log n) | O(1)     | No      |
+| **Quick Sort**    | O(n log n) | O(n log n)   | O(n²)      | O(log n) | No      |
+| **Counting Sort** | O(n+k)     | O(n+k)       | O(n+k)     | O(k)     | Yes     |
+| **Radix Sort**    | O(d(n+k))  | O(d(n+k))    | O(d(n+k))  | O(n+k)   | Yes     |
 **Key Terms:**
 
 - **Stable:** Equal elements maintain their relative order
 - **k:** Range of input values
 - **d:** Number of digits
 
-
+>Merge and heap are asymptotically optimal due to the upperbound for this sorting is O(nlogn) , matches the worst case lower bound of comparison sort
 ### Summary 
 #### 1.Merge sort
 - Split in half recursively
@@ -253,6 +253,12 @@ Show the tree after: a) Inserting 10, 20, 5 b) Inserting 6 (this will cause a sp
 - Repeatedly extract max and restore heap
 - Always O(n logn)
 - In place O(1) space
+
+>Max and min number of element in a heap
+>For a heap with height h:
+>Min: $2^h$
+>Max $2^{h+1}-1$
+
 #### 3.Quick sort
 - Pick pivot, partition around it
 - Recursively sort partitions
@@ -313,3 +319,163 @@ Show the tree after: a) Inserting 10, 20, 5 b) Inserting 6 (this will cause a sp
 `b) false, does not preserve order of equal element`
 `c) false`
 `d) false`
+
+
+# Part 4: Graph Algo
+Graph represent relationship between objects
+
+## Graph Representations
+### 1.Adjacency matrix
+- 2D array: `matrix[i][j] = 1` if edge from i to j exist
+- Space $O(V^2)$ where V = vertices
+- Good for dense graphs, quick edge lookup
+### 2.Adjacency List
+- Array of lists: each vertex has a list of neighbor
+- Space: $O(V+E)$ where E = edges
+- Good for sparse graphs
+
+
+## Graph Traversal Algo
+## 1.BFS
+- Uses queue (FIFO)
+- Explore level by level
+- Use for: shortest path in unweighted graph
+- Complexity: $O(V+E)$
+## 2.DFS
+- Uses stack
+- Explores as deep as possible before backtracking
+- Use for: cycle detection, 
+- **Complexity:** O(V + E)
+## Edge classification
+- Tree edge: part of dfs tree
+- Back edge: point to ancestor (indicates cycle)
+- Forward edge: points to descendants
+- Cross edge: between subtrees
+
+ 
+
+
+## Practice Questions - Part 4A: Graph Basics
+
+**Question 21:** For a graph with 5 vertices and 8 edges:
+
+- What's the space complexity of adjacency matrix?
+`O(25)`
+- What's the space complexity of adjacency list?
+`O(13)`
+- Which representation would you choose?
+`Adjecency list`
+
+**Question 24:** True or False: a) BFS finds the shortest path in weighted graphs b) DFS can detect cycles using back edges c) BFS uses a stack d) Both BFS and DFS have O(V + E) time complexity
+
+`a)False`
+`b)True`
+`c)False, queue`
+`d)True`
+
+---
+
+**Question 25:** Which algorithm (BFS or DFS) would you use for: a) Finding shortest path in an unweighted graph b) Detecting if a graph has a cycle c) Topological sorting d) Finding if two vertices are connected
+
+`a)BFS`
+`b)DFS`
+`c)DFS cause we need to detect if it has a cycle`
+`d)Unsure`
+
+
+## Shortest Path Algo
+### Algorithm Comparison
+
+|Algorithm|Works With|Time Complexity|Use Case|
+|---|---|---|---|
+|**BFS**|Unweighted|O(V + E)|Shortest path when all edges = 1|
+|**Dijkstra's**|Non-negative weights|O((V + E) log V)|GPS, routing, networks|
+|**Bellman-Ford**|Any weights (even negative)|O(VE)|Detects negative cycles|
+
+### Dijkstra's Algo
+Key idea: greedy approach - always pick the closes unvisited vertex
+Steps:
+1. Init distances: start = 0, others = $\infty$
+2. Pick vertex with smallest distance
+3. Update distances to all neighbour
+4.  Mark vertex as visited
+5. Repeat untill all vertices are visited
+DOES NOT WORK WITH NEGATIVE WEIGHT
+
+### Bellman-Ford Algo
+Key idea: relax all edges $V-1$ times
+Steps:
+1. Init distances: start = 0, others = $\infty$
+2. Relax all edges $V-1$ times
+	- For each edge (u, v, weight):
+		- If dist\[u] + weight < dist\[v]
+			- dist\[v] = dist\[u] + weight
+3. Check for negative cycles
+
+
+
+
+
+# Part 5: Dynamic Programming
+## Concepts
+DP works when a problem has
+1. Optimal substructure - Optimal solution contains optimal solutions to subproblems
+2. Overlapping subproblems - same subproblems are solved multiple times
+
+Two Approaches
+
+1. Top-down(Memoization) - Recursive + cache result
+2. Bottom-up(Tabulation) - build table iteratively
+
+
+Fibonacci 
+Top-down with memoization
+```python
+def fib(n, memo ={}):
+	if n in memo:
+		return memo[n]
+	if n <= 1:
+		return n
+	memo[n] = fib(n-1, memo) + fib(n-2, memo)
+	return memo[n]	
+```
+Time: O(n) since each fib(i) is only calc once
+
+Bottom up with Tabulation
+```python
+def fib(n):
+	if n <= 1:
+		return n
+	dp = [0] * (n+1)
+	dp[1] = 1
+	for i in range(2, n+1)
+		dp[i] = dp[i-1] + dp[i-2]
+	return dp[n]
+```
+Time: O(n), Space: O(n)
+
+
+
+Coin Change
+**Problem:** Given coins \[1, 5, 6, 9] and amount 11, find minimum coins needed. **Recurrence Relation:** 
+``` 
+dp[i] = minimum coins to make amount i 
+dp[i] = min(dp[i - coin] + 1) for each coin 
+```
+
+
+Knapsack Problem
+**Problem:** Items with weights and values, maximize value without exceeding capacity.
+
+**Example:** 
+- Items: weights=\[2,1,3,2], values=\[12,10,20,15] 
+- Capacity: 5
+
+**Recurrence:** 
+```python
+dp[i][w] = max value using first i items with capacity w 
+dp[i][w] = max( 
+	dp[i-1][w], // don't take item i 
+	dp[i-1][w-weight[i]] + value[i] // take item i 
+	) 
+```
