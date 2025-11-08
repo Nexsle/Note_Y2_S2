@@ -479,3 +479,12 @@ dp[i][w] = max(
 	dp[i-1][w-weight[i]] + value[i] // take item i 
 	) 
 ```
+
+Matrix chain multiplication
+**Problem:** Find optimal way to multiply matrices to minimize operations. 
+**Example:** Matrices with dimensions \[30, 35, 15, 5, 10, 20]
+
+```python
+cost = (dp[i][k] + dp[k+1][j] + dimensions[i-1] * dimensions[k] * dimensions[j])
+```
+
