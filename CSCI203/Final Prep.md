@@ -488,3 +488,35 @@ Matrix chain multiplication
 cost = (dp[i][k] + dp[k+1][j] + dimensions[i-1] * dimensions[k] * dimensions[j])
 ```
 
+## Practice Questions - Part 5: Dynamic Programming
+
+**Question 31:** What's the time complexity of: a) Naive recursive Fibonacci? b) DP Fibonacci with memoization?
+
+---
+
+**Question 32:** Given coins [1, 5, 6, 9] and target amount 11:
+
+- Build the DP table (show dp[0] through dp[11])
+- What's the minimum number of coins needed?
+- Which coins would you use?
+
+---
+
+**Question 33:** **0/1 Knapsack Problem:**
+
+- Items: weights=[3, 4, 5], values=[30, 50, 60]
+- Capacity: 8
+- Build the DP table
+- What's the maximum value?
+- Which items do you take?
+
+---
+
+**Question 34:** True or False: a) DP can only solve optimization problems b) Memoization is top-down, tabulation is bottom-up c) All recursive problems can benefit from DP d) DP trades space for time
+
+---
+
+**Question 35:** Identify which problems can use DP: a) Binary search b) Longest Common Subsequence c) Merge sort d) Shortest path in a graph
+
+
+
