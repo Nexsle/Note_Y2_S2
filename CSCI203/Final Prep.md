@@ -520,3 +520,47 @@ cost = (dp[i][k] + dp[k+1][j] + dimensions[i-1] * dimensions[k] * dimensions[j])
 
 
 
+# Part 6: String Algo and Hashing
+## A. Karp-Rabin
+Problem: Find pattern P in text T efficiently
+
+Key Idea:
+1. Compute hash of pattern
+2. Compute hash of each text substring using rolling hash
+3. if hashes match, vetify char by char 
+
+Rolling hash:
+- Insteaad of recalculating entire hash, update incrementally
+- Remove leftmost char, add rightmost char
+- Makes it O(1) per position
+
+Example
+Text: "ABCDABCD" Pattern: "BCD"
+
+Step1: hash the pattern
+`hash("BCD") = some value, say 123`
+
+Step2: hash first window of text
+`hash("ABC") = 100 (not equal 123)`
+
+Step3: roll the hash window
+```
+Remove 'A', add 'D'
+hash("BCD") = 123
+Verify: "BCD" == "BCD" 
+```
+
+Step4: continue
+```
+hash("CDA") = 150 (not equal)
+hash("DAB") = 200 (not equal)
+hash("ABC") = 100 (not equal)
+hash("BCD") = 123 ✓ Match!
+Verify: "BCD" == "BCD" ✓ Found at position 5!
+```
+
+
+## Karp-Rabin Algo
+Time: O(n + m)
+n: length of text
+m: length of pattern
